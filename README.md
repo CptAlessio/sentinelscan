@@ -1,7 +1,7 @@
 <h1>sentinelscan</h1>
 sentinelscan is a Python script that analyses C#.net files for security weaknesses based on the content of the file chsharp.xml. The script can be used to scan a local repository or a remote GitHub repository.
 
-<h2>Features</h2>
+<h2>Features</h2> 
 
 + Connects to GitHub and downloads the repository for local analysis
 + Reviews C#.net files for security weaknesses
