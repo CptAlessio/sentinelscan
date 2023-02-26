@@ -1,0 +1,198 @@
+<ruleset>
+    <rule id="1" name="Insecure HTTP connection">
+        <pattern>http\x3a\x2f{2}</pattern>
+        <description>The http keyword is used to detect potential insecure communications in C# code. Using HTTP can allow attackers to intercept and read sensitive information, such as passwords and credit card numbers. To avoid this issue, it's recommended to use HTTPS, which uses encryption to secure data transmission between client and server</description>
+    </rule>
+    <rule id="2" name="Token detected">
+        <pattern>[a-zA-Z0-9]{1,}token\s=</pattern>
+        <description>The use of the term token can indicate the presence of sensitive information such as access tokens, authentication tokens, and other secrets. If these tokens are exposed, attackers can use them to access protected resources, impersonate users, or carry out other malicious activities. it is recommended to properly secure and protect any sensitive information, including tokens, by using appropriate encryption, access controls, and other security measures. Additionally, it is important to ensure that secrets are not hard-coded in the source code, but are instead stored securely, such as in a secure key store</description>
+    </rule>
+    <rule id="3" name="SQL code detected">
+        <pattern>(\x2e)FromSqlRaw</pattern>
+        <description>The FromSqlRaw keyword is used to detect potential security weaknesses in C# code related to SQL injection attacks. FromSqlRaw is a method that allows you to execute raw SQL queries in Entity Framework Core, which can be vulnerable to SQL injection attacks if not properly secured.</description>
+    </rule>
+    <rule id="4" name="Insecure random value">
+        <pattern>new\x20Random</pattern>
+        <description>The Random class in C# generates a sequence of numbers based on a mathematical formula, which means that if you know the initial seed value used to create the Random instance, you can predict the entire sequence of numbers it will generate. By default, the seed value for a Random instance is based on the system clock, which means that if you create two Random instances close together, they will have the same seed value and will generate the same sequence of numbers. This predictability can be a security risk in certain situations, such as generating random values for cryptographic keys or passwords.</description>
+    </rule>
+    <rule id="5" name="Insecure channel">
+        <pattern>ChannelCredentials\x2eInsecure</pattern>
+        <description>The ChannelCredentials.Insecure keyword is used to detect potential security weaknesses in C# code related to the use of insecure gRPC channels. When ChannelCredentials.Insecure is used, the gRPC channel is created without any authentication or encryption, which can leave the channel vulnerable to man-in-the-middle (MITM) attacks</description>
+    </rule>
+    <rule id="6" name="Session ID detected">
+        <pattern>sessionId\x3d</pattern>
+        <description>The sessionId keyword is used to detect potential security weaknesses in C# code related to session management. Session IDs are used to track user sessions in web applications, but if not properly secured, can leave the application vulnerable to session hijacking attacks.</description>
+    </rule>
+    <rule id="7" name="GRPC channel detected">
+        <pattern>GrpcChannel\x2eForAddress</pattern>
+        <description>The GrpcChannel.ForAddress keyword is used to detect potential security weaknesses in C# code related to the creation of gRPC channels. When GrpcChannel.ForAddress is used, a new gRPC channel is created without any authentication or encryption, which can leave the channel vulnerable to man-in-the-middle (MITM) attacks</description>
+    </rule>
+    <rule id="8" name="Insecure hashing algorithm">
+        <pattern>MD5\x2ECreate[\x28\x29]</pattern>
+        <description>The MD5.Create() keyword is used to detect potential security weaknesses in C# code related to the use of the MD5 hashing algorithm. The MD5 algorithm is known to be vulnerable to collision attacks, which allow an attacker to generate two different inputs that produce the same hash value. This can be exploited by an attacker to bypass security measures and compromise the integrity of the system.</description>
+    </rule>
+    <rule id="9" name="Regular expression evaluation detected">
+        <pattern>/\x2eisMatch</pattern>
+        <description>The RegEx.IsMatch keyword is used to detect potential security weaknesses in C# code related to regular expression (regex) injection attacks. If a user-controlled string is passed to RegEx.IsMatch without proper validation or sanitization, an attacker may be able to inject malicious regex code that can cause the application to behave unexpectedly or disclose sensitive information.</description>
+    </rule>
+    <rule id="10" name="Encryption detected">
+        <pattern>AESEncryptionService</pattern>
+        <description>The AESEncryptionService keyword is used to detect potential security weaknesses in C# code related to the implementation of the Advanced Encryption Standard (AES) encryption algorithm. If the implementation of AES is not properly secured, it can be vulnerable to attacks such as brute-force attacks, side-channel attacks, and other cryptographic attacks. To avoid these issues, it is recommended to use properly implemented and secure encryption algorithms, such as AES with a secure key size and mode of operation. </description>
+    </rule>
+    <rule id="11" name="Password-based key derivation functionality">
+        <pattern>new\x20Rfc2898DeriveBytes</pattern>
+        <description>The Rfc2898DeriveBytes keyword is used to detect potential security weaknesses in C# code related to the generation of encryption keys using a password-based key derivation function (PBKDF). If the parameters used in Rfc2898DeriveBytes are not properly chosen, the generated key can be vulnerable to brute-force attacks.</description>
+    </rule>
+    <rule id="12" name="Vault Token">
+        <pattern>VAULT_TOKEN</pattern>
+        <description>The VAULT_TOKEN keyword is used to detect potential security weaknesses in C# code related to the use of Vault tokens for authentication and authorization. Vault tokens are used to access and manage secrets in Vault, but if not properly secured, can lead to unauthorized access to sensitive data.</description>
+    </rule>
+    <rule id="13" name="GitHub personal access token detected">
+        <pattern>ghp_[a-zA-Z0-9]{1,}</pattern>
+        <description>The ghp_[a-zA-Z0-9]{1,} keyword is used to detect potential security weaknesses in C# code related to the use of GitHub access tokens. If GitHub access tokens are exposed, they can be used by an attacker to access, modify, or delete code and other resources in a GitHub repository.</description>
+    </rule>
+    <rule id="14" name="Slack webhook">
+        <pattern>https\x3A\x2F\x2Fhooks\x2Eslack\x2Ecom\x2Fservices\x2f[A-Z0-9]{1,11}\x2F[A-Z0-9]{1,11}\x2F[A-Za-z0-9]{1,}</pattern>
+        <description>Slack webhooks allow external services to send messages to Slack channels, but if not properly secured, can be used by an attacker to send spam or malicious messages to the channel.</description>
+    </rule>
+    <rule id="15" name="System Process initiation">
+        <pattern>System\x22Diagnostic\x22Process\x22Start</pattern>
+        <description>The System.Diagnostic.Process.Start keyword is used to detect potential security weaknesses in C# code related to the execution of external processes. If not properly validated or sanitized, a user-controlled input passed to Process.Start may allow an attacker to execute arbitrary commands on the system.</description>
+    </rule>
+    <rule id="16" name="User input detected">
+        <pattern>request\x22querystring</pattern>
+        <description>The request.querystring keyword is used to detect potential security weaknesses in C# code related to the processing of user-controlled input in a web application. If not properly validated or sanitized, a user-controlled input passed in a query string may allow an attacker to perform various types of injection attacks, such as SQL injection, cross-site scripting (XSS), and command injection.</description>
+    </rule>
+    <rule id="17" name="Use of reflection">
+        <pattern>ReflectionPermission.MemberAccess</pattern>
+        <description>The ReflectionPermission.MemberAccess keyword is used to detect potential security weaknesses in C# code related to the use of reflection to access non-public members of a type. If not properly secured, an attacker may be able to use reflection to gain access to private fields or methods of an object, which can lead to unauthorized access or data leakage.</description>
+    </rule>
+    <rule id="18" name="Use of cryptography">
+        <pattern>System\x2eSecurity.Cryptography</pattern>
+        <description>The System.Security.Cryptography keyword is used to detect potential security weaknesses in C# code related to the implementation of cryptographic algorithms. If cryptographic algorithms are not properly secured, they can be vulnerable to attacks such as brute-force attacks, side-channel attacks, and other cryptographic attacks.</description>
+    </rule>
+    <rule id="19" name="Incomplete code">
+        <pattern>\x2f{2}(\x20?)TODO</pattern>
+        <description>The //todo keyword is used to detect potential security weaknesses in C# code related to incomplete or unfinished code that may introduce security vulnerabilities. If the //todo comments are left in the code, they may be ignored or overlooked, potentially leading to the introduction of vulnerabilities.</description>
+    </rule>
+    <rule id="20" name="Windows impersonation">
+        <pattern>identity\x20impersonate</pattern>
+        <description>The identity.impersonate keyword is used to detect potential security weaknesses in C# code related to impersonation. If impersonation is not properly secured, it can be used by an attacker to gain unauthorized access to resources or perform malicious activities.</description>
+    </rule>
+    <rule id="21" name="Assembly call by partially trusted code">
+        <pattern>\x5BAllowPartiallyTrustedCallers\x5D</pattern>
+        <description>The AllowPartiallyTrustedCallersAttribute or [assembly: AllowPartiallyTrustedCallers] keyword is used to detect potential security weaknesses in C# code related to the use of partially trusted callers. If not properly secured, a partially trusted caller may be able to perform unauthorized actions or access sensitive data.</description>
+    </rule>
+    <rule id="22" name="File input stream">
+        <pattern>FileInputStream</pattern>
+        <description>The FileInputStream keyword is used to detect potential security weaknesses in C# code related to the reading of files. If not properly secured, the use of FileInputStream may allow an attacker to read or modify sensitive files or data.</description>
+    </rule>
+    <rule id="23" name="SecureString used">
+        <pattern>SecureString\x28\x29\x3B</pattern>
+        <description>The SecureString keyword is used to detect potential security weaknesses in C# code related to the handling of sensitive data, such as passwords or other confidential information. If sensitive data is not properly secured, it can be vulnerable to attacks such as memory dumping or other types of memory attacks.</description>
+    </rule>
+    <rule id="24" name="Reflection used">
+        <pattern>using\x20System\x2eReflection</pattern>
+        <description>The System.Reflection keyword is used to detect potential security weaknesses in C# code related to the use of reflection. If not properly secured, an attacker may be able to use reflection to access or modify sensitive data or code, leading to unauthorized access or data leakage.</description>
+    </rule>
+    <rule id="25" name="Security permissions verification disabled">
+        <pattern>SecurityPermission\x2eSkipVerification</pattern>
+        <description>The SecurityPermission.SkipVerification keyword is used to detect potential security weaknesses in C# code related to the use of security permissions. If not properly secured, the use of SecurityPermission.SkipVerification may allow an attacker to execute untrusted or potentially malicious code, leading to security vulnerabilities in the system.</description>
+    </rule>
+    <rule id="26" name="URL Encoding">
+        <pattern>/\x2eUrlEncode</pattern>
+        <description>The UrlEncode keyword is used to detect potential security weaknesses in C# code related to the encoding of URL strings. If not properly implemented, the use of UrlEncode may allow an attacker to perform injection attacks, such as cross-site scripting (XSS) or SQL injection.</description>
+    </rule>
+    <rule id="27" name="Use of unmanaged code">
+        <pattern>SecurityPermission\x2eUnmanagedCode</pattern>
+        <description>The SecurityPermission.UnmanagedCode keyword is used to detect potential security weaknesses in C# code related to the use of unmanaged code. If not properly secured, the use of SecurityPermission.UnmanagedCode may allow an attacker to execute untrusted or potentially malicious code, leading to security vulnerabilities in the system.</description>
+    </rule>
+    <rule id="28" name="HtmlEncoding detected">
+        <pattern>HtmlEncode</pattern>
+        <description>The HtmlEncode keyword is used to detect potential security weaknesses in C# code related to the encoding of HTML strings. If not properly implemented, the use of HtmlEncode may allow an attacker to perform injection attacks, such as cross-site scripting (XSS).</description>
+    </rule>
+    <rule id="29" name="QueryAsync">
+        <pattern>\x2eQueryAsync\x3c</pattern>
+        <description>The QueryAsync keyword is used to detect potential security weaknesses in C# code related to the execution of database queries. If not properly secured, a user-controlled input passed to QueryAsync may allow an attacker to execute arbitrary SQL queries, leading to SQL injection attacks and potentially unauthorized access to sensitive data.</description>
+    </rule>
+    <rule id="30" name="Database connection">
+        <pattern>\x2eCreateConnection\x28\x29</pattern>
+        <description>The CreateConnection keyword is used to detect potential security weaknesses in C# code related to the creation of database connections. If not properly secured, an attacker may be able to execute arbitrary code or perform malicious activities by exploiting vulnerabilities in the database or its configuration.</description>
+    </rule>
+    <rule id="31" name="In-line Structured query language statement">
+        <pattern>\x22INSERT\x20INTO\x20</pattern>
+        <description>The use of inline SQL statements is a security issue that can lead to SQL injection attacks in C# code. If user-controlled input is not properly validated or sanitized, an attacker may be able to inject arbitrary SQL statements, leading to unauthorized access or data leakage.</description>
+    </rule>
+    <rule id="32" name="In-line Structured query language statement">
+        <pattern>\x22UPDATE\x20</pattern>
+        <description>The use of inline SQL statements is a security issue that can lead to SQL injection attacks in C# code. If user-controlled input is not properly validated or sanitized, an attacker may be able to inject arbitrary SQL statements, leading to unauthorized access or data leakage.</description>
+    </rule>
+    <rule id="33" name="Environment variable">
+        <pattern>\x2eSetEnvironmentVariable</pattern>
+        <description>The SetEnvironmentVariable keyword is used to detect potential security weaknesses in C# code related to the setting of environment variables. If not properly secured, an attacker may be able to modify or replace environment variables, which can lead to unauthorized access or data leakage.</description>
+    </rule>
+    <rule id="34" name="System.Net used">
+        <pattern>using\x20System\x2eNet\x3b</pattern>
+        <description>The using System.Net directive is used to include the System.Net namespace in a C# program, which provides classes for working with network communication. If not properly secured, the use of network communication in C# code can be vulnerable to attacks such as interception, modification, or unauthorized access.</description>
+    </rule>
+    <rule id="35" name="Handling of certificates">
+        <pattern>x509Certificate2\x22</pattern>
+        <description>The X509Certificate2 keyword is used to detect potential security weaknesses in C# code related to the use of X.509 digital certificates. If not properly secured, an attacker may be able to intercept or modify digital certificates, leading to unauthorized access or data leakage.</description>
+    </rule>
+    <rule id="36" name="Insecure database connection">
+        <pattern>SslMode\x2EPrefer</pattern>
+        <description>The Ssl.Prefer keyword is used to detect potential security weaknesses in C# code related to the use of SSL/TLS for secure network communication. If not properly configured, an attacker may be able to perform a downgrade attack, forcing the communication to use a less secure protocol or cipher suite.</description>
+    </rule>
+    <rule id="37" name="Insecure database connection">
+        <pattern>SslMode\x2EDisable</pattern>
+        <description>The SslMode.Disable keyword is used to detect potential security weaknesses in C# code related to the use of SSL/TLS for secure network communication. If SSL/TLS is disabled, an attacker may be able to intercept or modify network traffic, leading to unauthorized access or data leakage.</description>
+    </rule>
+    <rule id="38" name="gRPC reflection API enabled">
+        <pattern>\x2EMapGrpcReflectionService\x28\x29\x2B</pattern>
+        <description>The MapGrpcReflectionService keyword is used to detect potential security weaknesses in C# code related to the use of gRPC reflection. If not properly secured, gRPC reflection can allow an attacker to access sensitive information about the gRPC service, potentially leading to unauthorized access or data leakage.</description>
+    </rule>
+    <rule id="39" name="Insecure deserializer BinaryFormatter">
+        <pattern>BinaryFormatter\x28\x29</pattern>
+        <description>Insecure deserializers are vulnerable when deserializing untrusted data. An attacker could modify the serialized data to include unexpected types to inject objects with malicious side effects. An attack against an insecure deserializer could, for example, execute commands on the underlying operating system, communicate over the network, or delete files.</description>
+    </rule>
+    <rule id="40" name="Avoid handling Corrupted State Exceptions">
+        <pattern>\x5BHandleProcessCorruptedStateExceptions\x5D</pattern>
+        <description>Corrupted State Exceptions (CSEs) indicate that memory corruption exists in your process. Catching these rather than allowing the process to crash can lead to security vulnerabilities if an attacker can place an exploit into the corrupted memory region.</description>
+    </rule>
+    <rule id="41" name="Do not use insecure deserializer LosFormatter">
+        <pattern>new\x20LosFormatter\x28\x29\x5D</pattern>
+        <description>Insecure deserializers are vulnerable when deserializing untrusted data. An attacker could modify the serialized data to include unexpected types to inject objects with malicious side effects. An attack against an insecure deserializer could, for example, execute commands on the underlying operating system, communicate over the network, or delete files.</description>
+    </rule>
+    <rule id="42" name="Do not use TypeNameHandling values other than None">
+        <pattern>TypeNameHandling\x2E(?!None\b)</pattern>
+        <description>Insecure deserializers are vulnerable when deserializing untrusted data. An attacker could modify the serialized data to include unexpected types to inject objects with malicious side effects. An attack against an insecure deserializer could, for example, execute commands on the underlying operating system, communicate over the network, or delete files.</description>
+    </rule>
+    <rule id="43" name="Review code for file path injection vulnerabilities">
+        <pattern>File\x2EOpen\x28</pattern>
+        <description>The File.Open keyword is used to detect potential security weaknesses in C# code related to the reading or writing of files. If not properly secured, the use of File.Open may allow an attacker to read or modify sensitive files or data, leading to data leakage or other security vulnerabilities.</description>
+    </rule>
+    <rule id="44" name="Do Not Use Weak Cryptographic Algorithms">
+        <pattern>^(SHA1\.Create\(\)|RIPEMD160Managed\.Create\(\)|TripleDES\.Create\(\))$</pattern>
+        <description>Encryption algorithms such as TripleDES and hashing algorithms such as SHA1 and RIPEMD160 are considered to be weak. These cryptographic algorithms do not provide as much security assurance as more modern counterparts</description>
+    </rule>
+    <rule id="45" name="Do not disable SChannel use of strong crypto">
+        <pattern>Switch.System.Net.DontEnableSchUseStrongCrypto\x22\x2C\x20true\x29</pattern>
+        <description>Setting Switch.System.Net.DontEnableSchUseStrongCrypto to true weakens the cryptography used in outgoing Transport Layer Security (TLS) connections. Weaker cryptography can compromise the confidentiality of communication between your application and the server</description>
+    </rule>
+    <rule id="46" name="Do not disable SChannel use of strong crypto">
+        <pattern>\x5BValidateInput(\x28false\x29)\x5D</pattern>
+        <description>Request validation is a feature in ASP.NET that examines HTTP requests and determines whether they contain potentially dangerous content that can lead to injection attacks, including cross-site-scripting.</description>
+    </rule>
+    <rule id="47" name="Do Not Disable HTTP Header Checking">
+        <pattern>\x5BValidateInput(\x28false\x29)\x5D</pattern>
+        <description>HTTP header checking enables encoding of the carriage return and newline characters, \r and \n, that are found in response headers. This encoding can help to avoid injection attacks that exploit an application that echoes untrusted data contained in the header.</description>
+    </rule>
+    <rule id="48" name="Use container level access policy">
+        <pattern>\x2EGetSharedAccessSignature\x28</pattern>
+        <description>A container-level access policy can be modified or revoked at any time. It provides greater flexibility and control over the permissions that are granted</description>
+    </rule>
+    <rule id="49" name="Do not use digital signature algorithm (DSA)">
+        <pattern>\x2EGetSharedAccessSignature\x28</pattern>
+        <description>DSA is a weak asymmetric encryption algorithm and should not be used</description>
+    </rule>
+</ruleset>
