@@ -15,9 +15,9 @@ import shutil
 from xml.etree.ElementTree import parse
 
 
-def codeScanning(directory):
+def code_scanning(directory):
     # loop files in <directory>
-    sourcecode_files_in_project = getFilesInFolder(directory)
+    sourcecode_files_in_project = get_files_in_folder(directory)
 
     # Output to file
     x = datetime.datetime.now()
@@ -35,7 +35,7 @@ def codeScanning(directory):
         root = tree.getroot()
 
         for each_file in sourcecode_files_in_project:
-            scansinglefile(each_file, patternsDetected, root)
+            scan_single_file(each_file, patternsDetected, root)
 
         patternsDetected = list(dict.fromkeys(patternsDetected))
 
@@ -54,7 +54,7 @@ def codeScanning(directory):
             hotspot_text = finding.strip()
             index = hotspot_text.find("/#/") + len("/#/")
             rule_id = hotspot_text.split("/#/")[0]
-            finding_details = getHotspotDetails(root, rule_id)
+            finding_details = extract_finding_details(root, rule_id)
             rule_name, finding_description = finding_details.split("/#/")
             vulnerable_lineofcode = hotspot_text[index:]
             finding = {
@@ -77,18 +77,18 @@ def codeScanning(directory):
                     print()
                     printed_ruleids[rule_id] = True
 
-            saveFindingsToFile(counter, finding_description, output_file, rule_name, vulnerable_lineofcode)
+            save_findings_to_file(counter, finding_description, output_file, rule_name, vulnerable_lineofcode)
 
 
 # output finding to a file
-def saveFindingsToFile(counter, finding_description, output_file, rule_name, vulnerable_lineofcode):
+def save_findings_to_file(counter, finding_description, output_file, rule_name, vulnerable_lineofcode):
     output_file.write(str(counter) + "] " + rule_name + '\n')
     output_file.write(finding_description + '\n')
     output_file.write(vulnerable_lineofcode.lstrip() + '\n\n\n')
 
 
 # get name and description of the rule firing
-def getHotspotDetails(xmlroot, rule_id):
+def extract_finding_details(xmlroot, rule_id):
     for rule in xmlroot.findall("./rule[@id='" + rule_id + "']"):
         rule_name = rule.get("name")
         description = rule.find("description").text
@@ -96,7 +96,7 @@ def getHotspotDetails(xmlroot, rule_id):
 
 
 # scan file for vulnerabilities
-def scansinglefile(filename, allfindings, xmlruleset):
+def scan_single_file(filename, allfindings, xmlruleset):
     with open(filename, encoding='utf-8-sig') as file:
         for line in file:
             for rule in xmlruleset.iter("rule"):
@@ -106,7 +106,7 @@ def scansinglefile(filename, allfindings, xmlruleset):
 
 
 # Get list of c# files in directory
-def getFilesInFolder(directory):
+def get_files_in_folder(directory):
     r = []
     for root, dirs, files in os.walk(directory):
         for name in files:
@@ -131,7 +131,7 @@ if __name__ == '__main__':
     repo_name = path_components[2]
 
     output_folder = github.main(org_name, repo_name)
-    codeScanning(output_folder)
+    code_scanning(output_folder)
 
     # Ask the user if they want to delete the output folder
     delete_folder = input("Do you want to delete the source code or keep it for future use (y/n)")
