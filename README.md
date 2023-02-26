@@ -18,6 +18,6 @@ sentinelscan is a Python script that scans C#.net files for security weaknesses 
 
 <h3>Usage</h3>
 
-+ Clone the repository or download the sentinelscan.py file
++ Clone the repository
 + Install the required Python libraries using the command ```pip install -r requirements.txt```
 + Run the script using the command ```python sentinelscan.py <repository-url>```
