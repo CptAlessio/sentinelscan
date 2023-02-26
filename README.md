@@ -12,8 +12,9 @@ sentinelscan is a Python script that analyses C#.net files for security weakness
 
 <h3>Requirements</h3>
 
++ GitHub personal access token to access public/private repositories inside ```access_token.txt```
 + Python 3.6 or higher 
-+ The git command-line tool must be installed 
++ requests
 
 <h3>Usage</h3>
 
