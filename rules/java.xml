@@ -1,0 +1,218 @@
+<ruleset>
+    <rule id="1" name="Insecure HTTP connection">
+        <pattern>HttpServletRequest\x2EgetParameter</pattern>
+        <description>Retrieving user input from the query string, which may lead to injection vulnerabilities.</description>
+    </rule>
+    <rule id="2" name="Secure random number generation">
+        <pattern>java\x2Esecurity\x2ESecureRandom</pattern>
+        <description>Use of secure random number generation for cryptographic purposes.</description>
+    </rule>
+    <rule id="3" name="Command injection vulnerability">
+        <pattern>Runtime\x2Eexec</pattern>
+        <description>Potential command injection vulnerability when executing external commands.</description>
+    </rule>
+    <rule id="4" name="Weak cryptographic algorithms (DES)">
+        <pattern>Cipher\x2EgetInstance\("DES"\)</pattern>
+        <description>Using weak cryptographic algorithms (DES) for encryption.</description>
+    </rule>
+    <rule id="5" name="Weak hashing algorithm (MD5)">
+        <pattern>MessageDigest\x2EgetInstance\("MD5"\)</pattern>
+        <description>Using the MD5 hashing algorithm, which is weak and susceptible to collision attacks.</description>
+    </rule>
+    <rule id="6" name="Weak hashing algorithm (SHA-1)">
+        <pattern>MessageDigest\x2EgetInstance\("SHA-1"\)</pattern>
+        <description>Using the deprecated and insecure SHA-1 hashing algorithm.</description>
+    </rule>
+    <rule id="7" name="Null Cipher">
+        <pattern>javax\x2Ecrypto\x2ENullCipher</pattern>
+        <description>Using a null cipher may result in plaintext output.</description>
+    </rule>
+    <rule id="8" name="Insecure SSL/TLS protocols">
+        <pattern>SSLContext\x2EgetInstance\("SSL"\)</pattern>
+        <description>Use of insecure SSL/TLS protocols.</description>
+    </rule>
+    <rule id="9" name="Java KeyStore format">
+        <pattern>KeyStore\x2EgetInstance\("JKS"\)</pattern>
+        <description>Use of the Java KeyStore format, which has known security issues.</description>
+    </rule>
+	    <rule id="10" name="XPath injection vulnerability">
+        <pattern>XPathExpression</pattern>
+        <description>XPath injection vulnerability in XML processing.</description>
+    </rule>
+    <rule id="12" name="Sensitive information in session attributes">
+        <pattern>HttpSession\x2EsetAttribute</pattern>
+        <description>Storing sensitive information in session attributes.</description>
+    </rule>
+    <rule id="13" name="Cookie handling without security considerations">
+        <pattern>Cookie</pattern>
+        <description>Handling of cookies without proper security considerations.</description>
+    </rule>
+    <rule id="14" name="Generating cryptographic keys without specifying a secure algorithm">
+        <pattern>KeyGenerator</pattern>
+        <description>Generating cryptographic keys without specifying a secure algorithm.</description>
+    </rule>
+    <rule id="15" name="Generating key pairs without specifying a secure algorithm">
+        <pattern>KeyPairGenerator</pattern>
+        <description>Generating key pairs without specifying a secure algorithm.</description>
+    </rule>
+    <rule id="16" name="Key conversion without proper security considerations">
+        <pattern>KeyFactory</pattern>
+        <description>Key conversion without proper security considerations.</description>
+    </rule>
+    <rule id="17" name="Verifying XML digital signatures">
+        <pattern>XMLSignature</pattern>
+        <description>Verifying XML digital signatures to ensure data integrity.</description>
+    </rule>
+    <rule id="18" name="Calculating message digests for data integrity">
+        <pattern>MessageDigest</pattern>
+        <description>Calculating message digests for data integrity.</description>
+    </rule>
+    <rule id="19" name="Lack of proper input/output stream handling">
+        <pattern>(FileInputStream|FileOutputStream)</pattern>
+        <description>Lack of proper input/output stream handling, leading to security risks.</description>
+    </rule>
+	    <rule id="20" name="Deserialization vulnerability">
+        <pattern>ObjectInputStream</pattern>
+        <description>Deserialization vulnerabilities can lead to remote code execution.</description>
+    </rule>
+    <rule id="21" name="Lack of proper input validation in XML processing">
+        <pattern>XMLReader</pattern>
+        <description>Lack of proper input validation in XML processing.</description>
+    </rule>
+    <rule id="22" name="Potential XML injection vulnerability">
+        <pattern>JAXB\x2Eunmarshal</pattern>
+        <description>Potential XML injection vulnerability.</description>
+    </rule>
+    <rule id="23" name="Handling of public keys without proper security considerations">
+        <pattern>PublicKey</pattern>
+        <description>Handling of public keys without proper security considerations.</description>
+    </rule>
+    <rule id="24" name="Handling of private keys without proper security considerations">
+        <pattern>PrivateKey</pattern>
+        <description>Handling of private keys without proper security considerations.</description>
+    </rule>
+    <rule id="25" name="Use the strongest available cryptographic random number generator">
+        <pattern>SecureRandom\x2EgetInstanceStrong</pattern>
+        <description>Use the strongest available cryptographic random number generator.</description>
+    </rule>
+    <rule id="26" name="Insecure handling of cryptographic streams">
+        <pattern>(CipherInputStream|CipherOutputStream)</pattern>
+        <description>Insecure handling of cryptographic streams.</description>
+    </rule>
+    <rule id="27" name="Use of insecure SSL/TLS socket implementations">
+        <pattern>(SSLServerSocket|SSLSocket)</pattern>
+        <description>Use of insecure SSL/TLS socket implementations.</description>
+    </rule>
+    <rule id="28" name="Lack of proper input validation in XML processing">
+        <pattern>(XMLStreamReader|XMLStreamWriter)</pattern>
+        <description>Lack of proper input validation in XML processing.</description>
+    </rule>
+    <rule id="29" name="Handling HTTP connections without proper security considerations">
+        <pattern>HttpURLConnection</pattern>
+        <description>Handling HTTP connections without proper security considerations.</description>
+    </rule>
+    <rule id="30" name="Improper URL encoding/decoding">
+        <pattern>(URLDecoder|URLEncoder)</pattern>
+        <description>Improper URL encoding/decoding may lead to security vulnerabilities.</description>
+    </rule>
+	    <rule id="31" name="Use of base64 encoding/decoding for sensitive data">
+        <pattern>Base64</pattern>
+        <description>Use of base64 encoding/decoding for sensitive data without proper security considerations.</description>
+    </rule>
+    <rule id="32" name="Using outdated or insecure cryptographic algorithms (Blowfish)">
+        <pattern>Cipher\x2EgetInstance\("Blowfish"\)</pattern>
+        <description>Using outdated or insecure cryptographic algorithms like Blowfish.</description>
+    </rule>
+    <rule id="33" name="Using insecure stream cipher (RC4)">
+        <pattern>Cipher\x2EgetInstance\("RC4"\)</pattern>
+        <description>Using insecure stream cipher RC4.</description>
+    </rule>
+    <rule id="34" name="Using insecure block cipher mode (ECB)">
+        <pattern>Cipher\x2EgetInstance\("ECB"\)</pattern>
+        <description>Using insecure block cipher mode ECB.</description>
+    </rule>
+    <rule id="35" name="Detecting the use of HMAC for secure hashing">
+        <pattern>HMAC</pattern>
+        <description>Detecting the use of HMAC for secure hashing.</description>
+    </rule>
+    <rule id="36" name="Improper initialization of SSL/TLS context">
+        <pattern>SSLContext\x2Einit</pattern>
+        <description>Improper initialization of SSL/TLS context.</description>
+    </rule>
+    <rule id="37" name="Generating cryptographic algorithm parameters without proper security considerations">
+        <pattern>AlgorithmParameterGenerator</pattern>
+        <description>Generating cryptographic algorithm parameters without proper security considerations.</description>
+    </rule>
+    <rule id="38" name="Handling cryptographic algorithm parameters without proper security considerations">
+        <pattern>AlgorithmParameters</pattern>
+        <description>Handling cryptographic algorithm parameters without proper security considerations.</description>
+    </rule>
+    <rule id="39" name="Using the AES algorithm with inappropriate settings">
+        <pattern>Cipher\x2EgetInstance\("AES"\)</pattern>
+        <description>Using the AES algorithm with inappropriate settings.</description>
+    </rule>
+    <rule id="40" name="Agreeing on cryptographic keys without proper security considerations">
+        <pattern>KeyAgreement</pattern>
+        <description>Agreeing on cryptographic keys without proper security considerations.</description>
+    </rule>
+	<rule id="41" name="Handling cryptographic key pairs without proper security considerations">
+        <pattern>KeyPair</pattern>
+        <description>Handling cryptographic key pairs without proper security considerations.</description>
+    </rule>
+    <rule id="42" name="Handling X.509 certificates without proper security considerations">
+        <pattern>CertificateFactory</pattern>
+        <description>Handling X.509 certificates without proper security considerations.</description>
+    </rule>
+    <rule id="43" name="Timing attack vulnerability in cryptographic comparisons">
+        <pattern>MessageDigest\x2EisEqual</pattern>
+        <description>Timing attack vulnerability in cryptographic comparisons.</description>
+    </rule>
+    <rule id="44" name="Generating elliptic curve key pairs without proper security considerations">
+        <pattern>ECKeyPairGenerator</pattern>
+        <description>Generating elliptic curve key pairs without proper security considerations.</description>
+    </rule>
+    <rule id="45" name="Custom security providers should be carefully reviewed">
+        <pattern>java\x2Esecurity\x2EProvider</pattern>
+        <description>Custom security providers should be carefully reviewed for potential vulnerabilities.</description>
+    </rule>
+	<rule id="46" name="Random Number Generation">
+		<pattern>new\s+Random[\x28\x29\x2E]</pattern>
+		<description>Detects the use of the java.util.Random class for random number generation.</description>
+	</rule>
+	    <rule id="47" name="Avoid using java.lang.System.exit">
+        <pattern>System\x2Eexit</pattern>
+        <description>Avoid using System.exit, as it can terminate the entire Java virtual machine.</description>
+    </rule>
+    <rule id="48" name="Avoid using java.io.File.delete">
+        <pattern>File\x2Edelete</pattern>
+        <description>Avoid using File.delete to delete files, as it might not handle errors properly.</description>
+    </rule>
+    <rule id="49" name="Avoid using java.util.Timer">
+        <pattern>Timer</pattern>
+        <description>Avoid using java.util.Timer for scheduling tasks; prefer java.util.concurrent.ScheduledExecutorService.</description>
+    </rule>
+    <rule id="50" name="Use secure key generation with KeyGenerator">
+        <pattern>KeyGenerator\x2EgetInstance</pattern>
+        <description>Ensure secure key generation by specifying a secure algorithm with KeyGenerator.</description>
+    </rule>
+    <rule id="51" name="Avoid using java.util.logging.ConsoleHandler">
+        <pattern>ConsoleHandler</pattern>
+        <description>Avoid using ConsoleHandler in java.util.logging; consider using more secure alternatives.</description>
+    </rule>
+    <rule id="52" name="Avoid using java.lang.Runtime.exec">
+        <pattern>Runtime\x2Eexec</pattern>
+        <description>Avoid using Runtime.exec to execute external commands; prefer using ProcessBuilder.</description>
+    </rule>
+    <rule id="53" name="Avoid using java.util.zip.ZipInputStream">
+        <pattern>ZipInputStream</pattern>
+        <description>Avoid using ZipInputStream for untrusted input; it may lead to security vulnerabilities.</description>
+    </rule>
+    <rule id="54" name="Avoid using java.util.zip.ZipOutputStream">
+        <pattern>ZipOutputStream</pattern>
+        <description>Avoid using ZipOutputStream for untrusted output; it may lead to security vulnerabilities.</description>
+    </rule>
+    <rule id="55" name="Avoid using java.util.Vector">
+        <pattern>new\s+Vector\x3C\x3E\x28\x29\x3B</pattern>
+        <description>Avoid using Vector prefer using more modern and thread-safe alternatives from java.util.concurrent.</description>
+    </rule>
+</ruleset>
